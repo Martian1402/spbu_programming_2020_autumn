@@ -26,23 +26,48 @@ void processChoice(ArrayList& a, int choice)
 		{
 			a.add1;
 		}
-		a.toString;
+		cout << a.toString << endl;
 		break;
 	case 2:
 		for (int i = 0; i < 10; ++i)
 		{
 			a.add2;
 		}
-		a.toString;
+		cout << a.toString << endl;
 		break;
 	case 3:
-
+		int minindex = 0;
+		int maxindex = 0;
+		for (int i = 0; i < a.length; ++i)
+		{
+			if (a.get(i) < a.get(minindex))
+			{
+				minindex = i;
+			}
+			if (a.get(i) >= a.get(maxindex))
+			{
+				maxindex = i;
+			}
+		}
+		a.swap(minindex, maxindex);
+		cout << a.toString << endl;
 		break;
 	case 4:
-
+		for (int i = 0; i < a.length; ++i)
+		{
+			a.swap(i, rand() % a.length);
+		}
+		cout << a.toString << endl;
 		break;
 	case 5:
-
+		for (int i = 0; i < a.length; ++i)
+		{
+			if (a.get(i) < 0)
+			{
+				a.set(i, 0);
+			}
+		}
+		cout << a.toString << endl;
 		break;
 	}
 }
