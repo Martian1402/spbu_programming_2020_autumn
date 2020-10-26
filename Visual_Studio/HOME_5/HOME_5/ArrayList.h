@@ -22,9 +22,7 @@ private:
 
 public:
 
-	bool add1();
-
-	bool add2();
+	bool add(int element);
 
 	bool add(int index, int element);
 

@@ -24,14 +24,14 @@ void processChoice(ArrayList& a, int choice)
 	case 1:
 		for (int i = 0; i < 10; ++i)
 		{
-			a.add1;
+			a.add(rand() % 89 + 10);
 		}
 		cout << a.toString << endl;
 		break;
 	case 2:
 		for (int i = 0; i < 10; ++i)
 		{
-			a.add2;
+			a.add(rand() % 98 - 99);
 		}
 		cout << a.toString << endl;
 		break;

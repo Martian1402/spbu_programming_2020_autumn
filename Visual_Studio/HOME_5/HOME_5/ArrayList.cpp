@@ -38,35 +38,18 @@ bool indexIncorrect(int index, int count)
 	return ((index < 0) || (index >= count));
 }
 
-bool ArrayList::add1()
+bool ArrayList::add(int element)
 {
-	srand(time(NULL));
 	{
 		if (count == capacity)
 		{
 			expandArray(data, capacity);
 		}
-		data[count] = rand() % 89 + 10;
+		data[count] = element;
 		count++;
 		return true;
 	}
 }
-
-bool ArrayList::add2()
-{
-	srand(time(NULL));
-	{
-		if (count == capacity)
-		{
-			expandArray(data, capacity);
-		}
-		data[count] = rand() % 98 - 99;
-		count++;
-		return true;
-	}
-}
-
-
 
 bool ArrayList::add(int index, int element)
 {
