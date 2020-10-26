@@ -219,8 +219,13 @@ char* ArrayList::toString(int& count, int& capacity, int*& data)
 	addSymbolToStr(index, ']');
 	addSymbolToStr(index, ' ');
 	addSymbolToStr(index, '{');
+
 	for (int i = 0; i < count; i++)
 	{
+		if (data[i] < 0)
+		{
+			addSymbolToStr(index, '-');
+		}
 		addNumberToStr(index, data[i]);
 		length += numLength(data[i]);
 	}
