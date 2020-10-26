@@ -202,7 +202,7 @@ void ArrayList::addNumberToStr(int& index, int number)
 	index += length;
 }
 
-char* ArrayList::toString(int& count, int& capacity, int*& data)
+char* ArrayList::toString()
 {
 	int length = 10 + numLength(count) + numLength(capacity);
 	if (str != nullptr)

@@ -43,7 +43,7 @@ public:
 
 	bool isEmpty();
 
-	char* toString(int& count, int& capacity, int*& data);
+	char* toString();
 
 	bool remove(int index);
 
