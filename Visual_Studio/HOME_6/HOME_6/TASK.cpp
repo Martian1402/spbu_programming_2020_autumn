@@ -59,7 +59,7 @@ void processChoice(ArrayList& a, int choice)
 		{
 			for (int j = 0; j < n; ++j)
 			{
-				for (int i = a.length - n - 1 + j; i < -1 + j; --i)
+				for (int i = a.length - n - 1 + j; i > -1 + j; --i)
 				{
 					a.swap(a.get(i), a.get(i + 1));
 				}
@@ -69,7 +69,7 @@ void processChoice(ArrayList& a, int choice)
 		{
 			for (int j = 0; j < n; ++j)
 			{
-				for (int i = n - j; i > a.length - j; ++i)
+				for (int i = n - j; i < a.length - j; ++i)
 				{
 					a.swap(a.get(i), a.get(i - 1));
 				}
