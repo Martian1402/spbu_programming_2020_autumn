@@ -71,38 +71,21 @@ bool ArrayList::add(int index, int element)
 
 bool ArrayList::addAll(ArrayList& list)
 {
-	if (count <= list.capacity)
-	{
-		expandArray(data, capacity);
-	}
-	int h = 0;
 	for (int i = count + 1; i < list.count + 1; ++i)
 	{
-		data[i] = list.data[h];
-		++h;
+		add(list.get(i));
 	}
 	return true;
 }
 
 bool ArrayList::addAll(int index, ArrayList& list)
 {
-	if (indexIncorrect(index, count))
+	for (int i = count - 1; i >= 0; --i)
 	{
-		return false;
-	}
-	if (count <= list.capacity)
-	{
-		expandArray(data, capacity);
-	}
-	for (int i = count - 1; i < index + 1; --i)
-	{
-		data[i + list.count] = data[i];
-	}
-	int g = 0;
-	for (int i = index; i < index + list.count + 1; ++i)
-	{
-		data[i] = list.data[g];
-		++g;
+		if (!add(index, list.get(i)))
+		{
+			return false;
+		}
 	}
 	return true;
 }

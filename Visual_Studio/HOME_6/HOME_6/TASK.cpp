@@ -23,35 +23,36 @@ void processChoice(ArrayList& a, int choice)
 	switch (choice)
 	{
 	case 1:
-		int element;
+		int element = 0;
 		cin >> element;
-		cout << endl;
-		a.add(a.length, element);
+		a.add(a.length(), element);
 		break;
 	case 2:
-		cout << a.toString << endl;
+		cout << a.toString() << endl;
 		break;
 	case 3:
-	
+	{
 		int t = 0;
-	for (int i = 0; i < a.length / 2; ++i)
-	{
-		if (a.get(i) == a.get(a.length - 1 - i))
+		for (int i = 0; i < a.length() / 2; ++i)
 		{
-			++t;
+			if (a.get(i) == a.get(a.length() - 1 - i))
+			{
+				++t;
+			}
 		}
-	}
-	if (t == a.length / 2)
-	{
-		cout << a.toString << endl;
-	}
-	else
-	{
-		cout << 'no' << endl;
-	
+		if (t == a.length() / 2)
+		{
+			cout << a.toString() << endl;
+		}
+		else
+		{
+			cout << 'no' << endl;
+
+		}
 	}
 		break;
 	case 4:
+	{
 		int n = 0;
 		cin >> n;
 		cout << endl;
@@ -59,7 +60,7 @@ void processChoice(ArrayList& a, int choice)
 		{
 			for (int j = 0; j < n; ++j)
 			{
-				for (int i = a.length - n - 1 + j; i > -1 + j; --i)
+				for (int i = a.length() - n - 1 + j; i > -1 + j; --i)
 				{
 					a.swap(a.get(i), a.get(i + 1));
 				}
@@ -69,12 +70,13 @@ void processChoice(ArrayList& a, int choice)
 		{
 			for (int j = 0; j < n; ++j)
 			{
-				for (int i = n - j; i < a.length - j; ++i)
+				for (int i = n - j; i < a.length() - j; ++i)
 				{
 					a.swap(a.get(i), a.get(i - 1));
 				}
 			}
 		}
+	}
 		break;
 	case 5:
 
