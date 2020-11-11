@@ -10,9 +10,10 @@ private:
 	int capacity;
 	int* data;
 	char* str;
+
 public:
 	ArrayList(int capacity = 10) : count(0), capacity(capacity), data(new int[capacity]), str(nullptr) {}
-	ArrayList(ArrayList& list) : count(list.count), capacity(list.capacity), data(list.data), str(nullptr) {}
+	ArrayList(const ArrayList& list);
 	~ArrayList();
 
 private:

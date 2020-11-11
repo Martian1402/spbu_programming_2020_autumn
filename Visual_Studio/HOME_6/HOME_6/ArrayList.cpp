@@ -1,21 +1,25 @@
 #include "ArrayList.h"
 #include<ctime>
 
-ArrayList::ArrayList(int cap)
+ArrayList::ArrayList(const ArrayList& list)
 {
-	count = 0;
-	capacity = cap;
-	data = new int [capacity] {0};
+	count = list.count;
+	capacity = list.count;
+	data = new int[count];
+	for (int i = 0; i < count; data[i] = list.data[i], ++i);
 	str = nullptr;
 }
 
 ArrayList::~ArrayList()
 {
+	if (data != nullptr)
+	{
+		delete[] data;
+	}
 	if (str != nullptr)
 	{
 		delete[] str;
 	}
-	delete[] data;
 }
 
 void ArrayList::expandArray(int* &arr, int &capacity)
@@ -245,3 +249,4 @@ int ArrayList::length()
 {
 	return count;
 }
+
