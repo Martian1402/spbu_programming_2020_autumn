@@ -1,0 +1,5 @@
+﻿  LinkedList.cpp
+c:\users\sofia\desktop\программирование\martian1402\spbu_programming_2020_autumn\visual_studio\home_8\home_8\linkedlist.cpp(221): warning C4715: LinkedList::extractTail: значение возвращается не при всех путях выполнения
+c:\users\sofia\desktop\программирование\martian1402\spbu_programming_2020_autumn\visual_studio\home_8\home_8\linkedlist.cpp(251): warning C4715: LinkedList::extract: значение возвращается не при всех путях выполнения
+c:\users\sofia\desktop\программирование\martian1402\spbu_programming_2020_autumn\visual_studio\home_8\home_8\linkedlist.cpp(193): warning C4715: LinkedList::extractHead: значение возвращается не при всех путях выполнения
+  HOME_8.vcxproj -> C:\Users\Sofia\Desktop\Программирование\Martian1402\spbu_programming_2020_autumn\Visual_Studio\HOME_8\Debug\HOME_8.exe

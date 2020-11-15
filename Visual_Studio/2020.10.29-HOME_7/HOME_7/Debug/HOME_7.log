@@ -1,0 +1,5 @@
+﻿  ArrayList.cpp
+  Task.cpp
+c:\users\sofia\desktop\программирование\martian1402\spbu_programming_2020_autumn\visual_studio\home_7\home_7\task.cpp(11): warning C4244: аргумент: преобразование "time_t" в "unsigned int", возможна потеря данных
+  Создание кода...
+  HOME_7.vcxproj -> C:\Users\Sofia\Desktop\Программирование\Martian1402\spbu_programming_2020_autumn\Visual_Studio\HOME_7\Debug\HOME_7.exe

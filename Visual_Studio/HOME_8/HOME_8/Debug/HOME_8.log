@@ -1,4 +1,0 @@
-﻿  LinkedList.cpp
-c:\users\sofia\desktop\программирование\martian1402\spbu_programming_2020_autumn\visual_studio\home_8\home_8\linkedlist.cpp(236): error C3867: "LinkedList::extractHead": нестандартный синтаксис; используйте "&", чтобы создать указатель на член
-  Task.cpp
-  Создание кода...
