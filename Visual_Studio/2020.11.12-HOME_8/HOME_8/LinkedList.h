@@ -21,6 +21,12 @@ public:
 	~LinkedList();
 private:
 	bool indexValid(int index);
+	Node* extractHeadNode();
+	Node* extractTailNode();
+	Node* extractNode(int index);
+	void inserttHeadNode(Node* &node);
+	void insertTailNode(Node* &node);
+	void insertNode(int index, Node* &node);
 public:
 	int lenght();
 
@@ -59,7 +65,7 @@ public:
 	/// <param name="">индекс удаляемого элемента</param>
 	void operator-=(int index);
 
-	LinkedList& operator=(LinkedList);
+	LinkedList& operator=(const LinkedList& list);
 
 	
 	/// поиск элемента

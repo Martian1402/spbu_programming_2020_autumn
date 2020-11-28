@@ -180,6 +180,7 @@ int LinkedList::extractHead()
 		int result = head->data;
 		delete head;
 		head = tail = nullptr;
+		--count;
 		return result;
 	}
 	else if (count > 1)
@@ -187,6 +188,7 @@ int LinkedList::extractHead()
 		int result = head->data;
 		Node* temp = head;
 		head = head->next;
+		--count;
 		delete temp;
 		return result;
 	}
@@ -205,7 +207,7 @@ int LinkedList::extractTail()
 		head = tail = nullptr;
 		return result;
 	}
-	else if (count > 1) 
+	if (count > 1) 
 	{
 		int result = tail->data; //запоминаем лежащий в хвосте элемент
 		Node* temp = head;
@@ -215,6 +217,7 @@ int LinkedList::extractTail()
 		}
 		temp->next = nullptr; //говорим, что теперь после найденого элемента ничего нет (теперь он является последним
 		delete tail; 
+		--count;
 		tail = temp; //присваиваем новое значение ссылке на хвост
 		return result;
 	}
@@ -226,28 +229,23 @@ int LinkedList::extract(int index)
 	{
 		return -1;
 	}
-	if (count == 0)
-	{
-		return -1;
-	} 
-	else if (count == 1)
+	if (index == 0)
 	{
 		extractHead();
-	}
-	else if (count > 1)
+	} 
+	else if (index == count - 1)
 	{
-		Node* temp = head;
-		for (int i = 0; i < index; ++i)
-		{
-			temp = temp->next;
-		}
-		int result = temp->data;
-		Node* node = temp;
-		temp = temp->next;
-		delete node;
-
-		return result;
+		return extractTail();
 	}
+		Node* temp = head;
+		for (int i = 0; i < index - 1; ++i, temp = temp->next);
+		Node* deleted = temp->next;
+		int result = deleted->data;
+		temp->next = temp->next->next;
+		delete deleted;
+		--count;
+		return result;
+	
 }
 
 void LinkedList::operator-=(int index)
@@ -259,34 +257,122 @@ void LinkedList::operator-=(int index)
 	
 }
 
-LinkedList& LinkedList::operator=(LinkedList)
+LinkedList& LinkedList::operator=(const LinkedList& list)
 {
-	return (*this);
+	if (this != &list)
+	{
+		while (count > 0)
+		{
+			extractHead();
+		}
+		for (Node* temp = list.head; temp != nullptr; temp = temp->next)
+		{
+			addToTail(temp->data);
+		}
+
+	}
+	return *this;
 }
 
 int LinkedList::indexOf(int element)
 {
 	int result = 0;
 	Node* temp = head;
-	while (temp->data != element)
+	while (temp != nullptr)
 	{
-		temp = temp->next;
 		++result;
+		if (temp->data == element)
+		{
+			return result;
+		}
+		temp = temp->next;
 	}
-	if (result == count - 1)
-	{
-		return -1;
-	}
-	else
-	{
-		return 0;
-	}
-	
+	return -1;
 }
 
 bool LinkedList::contains(int element)
 {
-	return indexOf(element);
+	return (indexOf(element) != -1 ? true : false);
+}
+
+Node* LinkedList::extractHeadNode()
+	{
+		Node* node = head;
+		head = head->next;
+		--count;
+		node->next = nullptr;
+		return node;
+	}
+
+Node* LinkedList::extractTailNode()
+{
+	if (head->next == nullptr)
+	{
+		return extractHeadNode();
+	}
+	Node* node = head;
+	while (node->next->next != nullptr)
+	{
+		node = node->next;
+	}
+	tail = node;
+	node = node->next;
+	tail->next = nullptr;
+	--count;
+	node->next = nullptr;
+	return node;
+}
+
+Node * LinkedList::extractNode(int index)
+{
+	if (index == 0)
+	{
+		return extractHeadNode();
+	}
+	if (index == count - 1)
+	{
+		return extractTailNode();
+	}
+	Node* node = head;
+	for (int i = 0; i < index - 1; ++i, node = node->next);
+	Node* temp = node;
+	node = node->next;
+	temp->next = temp->next->next;
+	node->next = nullptr;
+	--count;
+	return node;
+}
+
+void LinkedList::inserttHeadNode(Node* &node)
+{
+	node->next = head;
+	head = node;
+	++count;
+}
+
+void LinkedList::insertTailNode(Node* &node)
+{
+	tail->next = node;
+	tail = tail->next;
+	tail->next = nullptr;
+	++count;
+}
+
+void LinkedList::insertNode(int index, Node* &node)
+{
+	if (index == 0)
+	{
+		return inserttHeadNode(node);
+	}
+	if (index == count)
+	{
+		return insertTailNode(node);
+	}
+	Node*temp = head;
+	for (int i = 0; i < index - 1; ++i, temp = temp->next);
+	node->next = temp->next;
+	temp->next = node;
+	++count;
 }
 
 bool LinkedList::swap(int index1, int index2)
@@ -299,24 +385,15 @@ bool LinkedList::swap(int index1, int index2)
 	{
 		return true;
 	}
-	else
+	else if (index1 > index2)
 	{
-		Node* temp1 = head;
-		Node* temp2 = head;
-		for (int i = 0; i < index1; ++i)
-		{
-			temp1 = temp1->next;
-		}
-		for (int i = 0; i < index2; ++i)
-		{
-			temp2 = temp2->next;
-		}
-		Node* temp3 = temp1;
-		temp1->next = temp2->next;
-		temp2->next = temp3->next;
-		delete temp3;
-		return true;
+		return swap(index2, index1);
 	}
+	Node* node2 = extractNode(index2);
+	Node* node1 = extractNode(index1);
+	insertNode(index1, node2);
+	insertNode(index2, node1);
+	return true;
 }
 
 std::ostream & operator<<(std::ostream & stream, const LinkedList list)
