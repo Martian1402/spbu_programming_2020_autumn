@@ -90,7 +90,7 @@ int readInt(long long& number)
 		}
 	}
 	number = stringToInt(str);
-	return 0;
+	return number;
 }
 
 double readDouble(double& number)
@@ -128,7 +128,7 @@ double readDouble(double& number)
 		result = result + (double)(str[i] - '0') / pow(10, i - index);
 	}
 	number = result;
-	return 0;
+	return number;
 }
 
 main()
@@ -155,7 +155,7 @@ main()
 		}
 	} while (true);
 	
-	cout << n1 + n2;
+	cout << readInt(n1) + readDouble(n2);
 
 	return EXIT_SUCCESS;
 }
