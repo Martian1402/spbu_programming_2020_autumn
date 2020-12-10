@@ -26,7 +26,12 @@ void trim(string& str)
 	{
 		startIndex++;
 	}
-	str = str.substr(startIndex);
+	int len = 0;
+	while (str[startIndex] != ' ')
+	{
+		len++;
+	}
+	str = str.substr(startIndex, len);
 }
 
 bool isDigit(char symbol)
@@ -131,31 +136,29 @@ double readDouble(double& number)
 	return number;
 }
 
-main()
+long double sum(long long a, double b)
+{
+	return a + b;
+}
+
+int main()
 {
 	setlocale(LC_ALL, "Russian");
 	srand(time(NULL));
-	long long n1;
-	double n2;
-	int er1 = 0;
-	int er2 = 0;
-
-	do
+	long long num1 = 0;
+	double num2 = 0;
+	int error = 0;
+	while ((error = readInt(num1)) > -1)
 	{
-		er1 = readInt(n1);
-		er2 = readDouble(n2);
-		if (er1 != 0 || er2 != 0)
-		{
-			resolveError(er1);
-			resolveError(er2);
-		}
-		else
-		{
-			break;
-		}
-	} while (true);
-	
-	cout << readInt(n1) + readDouble(n2);
+		resolveError(error);
+	}
+	while ((error = readDouble(num2)) > -1)
+	{
+		resolveError(error);
+	}
+		
+	cout << sum(num1, num2);
 
 	return EXIT_SUCCESS;
 }
+
