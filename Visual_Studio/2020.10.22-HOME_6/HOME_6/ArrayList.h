@@ -13,7 +13,14 @@ private:
 
 public:
 	ArrayList(int capacity = 10) : count(0), capacity(capacity), data(new int[capacity]), str(nullptr) {}
-	ArrayList(const ArrayList& list);
+	ArrayList(const ArrayList& list)
+	{
+		count = list.count;
+		capacity = list.capacity;
+		data = new int[capacity];
+		str = nullptr;
+		for (int i = 0; i < count; data[i] = list.data[i], ++i);
+	}
 	~ArrayList();
 
 private:
